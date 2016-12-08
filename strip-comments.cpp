@@ -2,13 +2,10 @@
 #include <string>
 #include <iterator>
 #include <algorithm>
+#include <regex>
 
-// g++ -std=c++14 -Wall -o even even.cpp
-// cat file | even 
-// - print lines with even line numbers
-// cat file | even -s
-// - print lines with even line numbers defining second line as first
-//   line
+// g++ -std=c++14 -Wall -o strip-comments strip-comments.cpp
+// cat file | strip-comments 
 
 using namespace std;
 
@@ -23,23 +20,14 @@ class line {
 };
 
 int main(int argc, char **argv) {
-    int count = 0;
-    bool skip = false;
-    if(argc > 1) {
-        string flag { argv[1] };
-        skip = ((flag == "-s") ? true : false);
-    }
-
+    regex pattern {R"(^\s*?[#%].*)"};
     copy_if(istream_iterator<line>(cin), 
             istream_iterator<line>(), 
             ostream_iterator<string>(cout,"\n"),
             [&](const string &s) -> bool { 
-                if(skip) {
-                    skip = false;
-                    return false;
-                }
-                ++count; 
-                return ((count % 2) == 0); 
+                //cout << "@" << s << "@\n";
+                smatch match;
+                return(!regex_match(s, match, pattern));
             });
     return(0);
 }

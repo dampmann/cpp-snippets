@@ -1,0 +1,12 @@
+# comment
+  ## comment
+    %comment
+#
+good
+	# no
+		#no
+% comment
+
+%%%%%
+
+%# comment

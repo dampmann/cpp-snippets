@@ -12,6 +12,16 @@
 
 using namespace std;
 
+class line {
+    string input;
+    public:
+        friend istream& operator>>(istream &is, line &Line) {
+            return getline(is, Line.input);
+        }
+
+        operator string() const { return(input); }
+};
+
 int main(int argc, char **argv) {
     int count = 0;
     bool skip = false;
@@ -20,8 +30,8 @@ int main(int argc, char **argv) {
         skip = ((flag == "-s") ? true : false);
     }
 
-    copy_if(istream_iterator<string>(cin), 
-            istream_iterator<string>(), 
+    copy_if(istream_iterator<line>(cin), 
+            istream_iterator<line>(), 
             ostream_iterator<string>(cout,"\n"),
             [&](const string &s) -> bool { 
                 if(skip) {
