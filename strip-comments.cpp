@@ -25,7 +25,6 @@ int main(int argc, char **argv) {
             istream_iterator<line>(), 
             ostream_iterator<string>(cout,"\n"),
             [&](const string &s) -> bool { 
-                //cout << "@" << s << "@\n";
                 smatch match;
                 return(!regex_match(s, match, pattern));
             });
