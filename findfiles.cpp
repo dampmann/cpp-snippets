@@ -98,6 +98,15 @@ int main(int argc, char **argv) {
     std::vector<std::thread> workers;
     std::string base_dir { argv[1] };
     std::string pattern { argv[2] };
+    try {
+        std::regex pat { pattern };
+    } catch(std::exception &e) {
+        std::lock_guard<std::mutex> lg(output_mutex);
+        std::cerr << e.what() << "\n";
+        return(EXIT_FAILURE);
+    }
+
+
     dirs.push_back(base_dir);
     traverse_directory(base_dir);
     for(int i = 0; i < number_of_threads; ++i) {
