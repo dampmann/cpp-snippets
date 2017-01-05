@@ -9,5 +9,6 @@ This repository includes c++ snippets to simplify daily tasks
   flag -s skip first line (first line is second line)    
 + **strip-comments**    
   remove lines starting with optional whitespaces or tabs followed by # or %    
-
++ **findfiles**    
+  find files recursively in a directory using multiple threads
 

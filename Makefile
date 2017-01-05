@@ -1,5 +1,5 @@
 BIN=macos-bin
-all: even odd strip-comments
+all: even odd strip-comments findfiles
 odd: odd.o 
 	g++ -std=c++14 -Wall -o ${BIN}/odd build/odd.o
 odd.o:
@@ -12,5 +12,9 @@ strip-comments: strip-comments.o
 	g++ -std=c++14 -Wall -o ${BIN}/strip-comments build/strip-comments.o
 strip-comments.o:
 	g++ -std=c++14 -Wall -c strip-comments.cpp -o build/strip-comments.o
+findfiles: findfiles.o
+	g++ -std=c++14 -Wall -o ${BIN}/findfiles build/findfiles.o
+findfiles.o:
+	g++ -std=c++14 -Wall -c findfiles.cpp -o build/findfiles.o
 clean:
 	rm build/*.o
